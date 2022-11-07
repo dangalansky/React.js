@@ -3,11 +3,21 @@ React.js
 
 * code sandbox is a browser-based development environment 
 
+
+
+
+
+
+
+
 React applications all contained in the following:
 <div id="root"></div>
 
 comes just before: 
 <script src="../src/index.js" type="text/javascript"></script>
+
+JSX- JavaScript Syntax Extension, React extension
+	—> provides a way to structure component rendering using syntax similar in appearance to HTML
 
 1) required dependencies:
 
@@ -32,8 +42,35 @@ comes just before:
 				<h1> Hello World </h1>
 				<p> A paragraph! </p>
 			</div>,
-			document.getElementById(“root)
+			document.getElementById(“root”)
 		);
+
+Inserting Variables
+
+	ex) const name = “Dan”
+
+	<h1> Hello {name} </h1> —> Renders to “Hello Dan”
+
+	ex) injecting JS expressions into the brackets
+
+	<h1> Your lucky number is {Math.floor(Math.random() * 10)} </h1> —> Renders to “Your lucky number is 2” 
+			* randomizes 0 - 10 every reload
+
+Expressions vs. Statements
+
+	* expression - piece of code that results in a value
+
+		ex) const y = 5;
+
+		ex) const y = getAnswer();
+
+	* statement - instruction or action
+
+		ex) if/else statement
+
+		ex) while loop 
+
+
 
 
 
