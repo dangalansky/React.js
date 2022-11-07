@@ -1,13 +1,10 @@
 React.js
-* front end javascript library for UI construction
 
-* code sandbox is a browser-based development environment 
+Launch React:
 
-
-
-
-
-
+1) Hyper Terminal
+2) cd into /Users/dangalansky/my-app
+3) npm start
 
 
 React applications all contained in the following:
@@ -70,8 +67,22 @@ Expressions vs. Statements
 
 		ex) while loop 
 
+CSS and Styling within JSX
 
+1) we must update our script code to: type=“text/JSX”
 
+2) apply all styling through classes, created in styles.css
 
+	ex) .heading {
+			color: red;
+		}
 
+3) HTML attributes must be camel-cased bc it’s JSX
+		
+		ex) <h1 className=“heading” contentEditable=“false”> Hello World </h1>
 
+4) We can still target JSX elements through CSS
+
+		ex) ul {
+				color: blue;
+			}
