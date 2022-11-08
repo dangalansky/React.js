@@ -79,10 +79,30 @@ CSS and Styling within JSX
 
 3) HTML attributes must be camel-cased bc it’s JSX
 		
-		ex) <h1 className=“heading” contentEditable=“false”> Hello World </h1>
+	ex) <h1 className=“heading” contentEditable=“false”> Hello World </h1>
 
 4) We can still target JSX elements through CSS
 
-		ex) ul {
-				color: blue;
-			}
+	ex) ul {
+			color: blue;
+		}
+
+Inline Styles
+
+1) inline styles must be formatted in JSON within curly brackets (so, 2 sets!)
+	
+	ex) <h1 style={{ color: “red” }}> Hello World! </h1>
+
+2) camel-cased keys, values as strings and commas instead of semi colons
+
+	ex) const customStyle = {
+			color: “red”,
+			fontSize: “20px”
+		}
+
+		<h1 style={customStyle}>Hello World!</h1>
+
+3) useful when a certain condition is met and something must change on the fly
+
+	ex) customStyle.color = “blue”;
+
