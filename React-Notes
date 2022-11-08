@@ -1,4 +1,4 @@
-React.js
+ React.js
 *style guide: 
 
 https://github.com/airbnb/javascript/tree/master/react
@@ -143,7 +143,7 @@ Components
 
 	ex) <Heading />
 
-4) Component should reside as separate .jsx files inside the component folder
+4) Component should reside as separate .jsx files inside the component directory (placed inside src directory)
 
 	ex) Heading.jsx
 
@@ -172,3 +172,4 @@ Components
 		ReactDOM.render(<App/ >, document.getElementById(“root”));
 
 	this would be all thats there!
+
