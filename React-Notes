@@ -1,4 +1,7 @@
 React.js
+*style guide: 
+
+https://github.com/airbnb/javascript/tree/master/react
 
 Launch React:
 
@@ -106,3 +109,66 @@ Inline Styles
 
 	ex) customStyle.color = “blue”;
 
+4) you can set empty variables
+
+	ex) let greeting;
+		
+		const customStyle = {
+			color: “”
+		}
+
+		if (condition) {
+			greeting = “New Statement”;	
+			customStyle.color = “red”;
+		}
+
+Components
+
+* allows for less scrolling, less code, easier to understand :)
+
+1) React Convention: Components are named in Pascal Case
+	- first letter of every word capitalized
+
+2) Components are created as functions
+
+	ex) function Heading() {
+			return <h1> My Favorite Foods </h1>
+		}
+
+3) Components are placed as HTML elements
+
+	ex) <Heading></Heading>
+
+	 But, if we have an element without children, self-closing tag
+
+	ex) <Heading />
+
+4) Component should reside as separate .jsx files inside the component folder
+
+	ex) Heading.jsx
+
+5) Each .jsx file must import react and export component
+
+	ex) import React from “react”;
+
+		function Heading() {
+			return <h1>My Favorite Foods</h1>;
+		}
+
+		export default Heading;
+
+6) index.js must import component, from filepath
+
+	ex) import Heading from “./components/Heading”;
+
+7) common practice is to build component tree inside App.jsx
+
+	ex) inside index.js
+
+		import React from “react”;
+		import ReactDOM from “react-dom”;
+		import App from “./components/App”;
+
+		ReactDOM.render(<App/ >, document.getElementById(“root”));
+
+	this would be all thats there!
