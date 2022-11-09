@@ -225,5 +225,59 @@ Props
 
 3) When you use a component, simply use props to personalize
 
-	ex) <Card name=“Beyonce” img=“https://image.com” tel=“303.718.4636” />
+	ex) <Card name=“Beyonce” img=“https://image.com” tel=“303.718.6666” />
 
+4) To pull a single element out of a props-based component, to be its own component
+
+	ex) <p className=“info”>{props.tel}</p> becomes Details()
+
+		come up with new attribute name (detailInfo)
+
+		function Details (props) {
+			return <img src={props.detailInfo} />;
+		}
+
+	-> then you place Avatar as component like so:
+		
+		<Detail detailInfo={props.tel} />
+
+
+React DevTools
+
+* find names of properties and which components rendered them
+
+
+1) go to inspect > components
+
+2) select components to see prop names and related data
+
+3) look at full source code
+
+	—> select component > select “<>” on right 
+
+Mapping Components
+
+*.map() —> apply to a JSON array, expects a function
+
+—> disperses data through a loop into a function that renders HTML elements
+
+* requires children to each have a unique key prop
+
+ex) contacts.js is a JSON array
+
+	1) create function that takes data from array
+		
+		function createCard(contact) {
+			return(
+				 <Card 
+					key={contact.id}
+					name={contact.name}
+					img={contact.imgURL}
+				/>
+			);
+		}
+
+	2) inside curly brakets pass rendering function into .map() function
+	
+		{contacts.map(createCard)}
+	
