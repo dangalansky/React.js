@@ -1,4 +1,4 @@
- React.js
+React.js
 *style guide: 
 
 https://github.com/airbnb/javascript/tree/master/react
@@ -172,4 +172,58 @@ Components
 		ReactDOM.render(<App/ >, document.getElementById(“root”));
 
 	this would be all thats there!
+
+Exporting Modules
+
+1) keyword default means that will be imported regardless of what you call the file
+
+	ex) export default Heading;
+
+		—> import Bullshoot from “./components/Heading”
+		—> all the same, call it whatever you want
+
+2) if you want to export multiple items from module
+
+		—> place items inside {} after default
+		
+		ex) export default pi;
+			export { doublePi, triplePi };
+
+3) if you are importing multiple items from module
+
+		—> place item(s) inside {} for import statement
+
+		ex) import pi, { doublePi, triplePi } from “./components/Math”
+
+		—> must use () to activate the item later
+
+		ex) <h1>{doublePi()}</h1>
+
+		-> OR: wildcard import
+
+		ex) import * as pi from “./components/Math”
+
+			{pi.default} or {pi.doublePi()} etc…
+
+Props
+
+*properties; attributes of React elements 
+
+1) unlike HTML, React allows for custom-defined properties
+
+2) create a component and define props
+
+	ex) function Card(props) {
+			return(
+				<div>
+					<h2>{props.name}</h2>
+					<img src={props.img} />
+					<p>{props.tel}</p>
+				</div>
+			);
+		}
+
+3) When you use a component, simply use props to personalize
+
+	ex) <Card name=“Beyonce” img=“https://image.com” tel=“303.718.4636” />
 
