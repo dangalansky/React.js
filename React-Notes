@@ -257,7 +257,7 @@ React DevTools
 
 Mapping Components
 
-*.map() —> apply to a JSON array, expects a function
+*.map() —> creates a new array by looping through (JSON) array and doing something to each item; expects a function
 
 —> disperses data through a loop into a function that renders HTML elements
 
@@ -280,4 +280,96 @@ ex) contacts.js is a JSON array
 	2) inside curly brakets pass rendering function into .map() function
 	
 		{contacts.map(createCard)}
+
+Filter
+*.filter() -> creates a new array by looping through an array, returns items that return true; expects a function
+
+ex) example with anonymous function
 	
+	—> numbers = [3, 56, 2, 48, 5]
+
+	var newNumbers = numbers.filter( function(num)  {
+		return num < 10;
+	});
+
+	newNumbers = [58, 48]
+
+Reduce
+*.reduce() -> accumulates a value by doing something to each item in an array; expects a function
+
+	—> inner function requires accumulator (basically 0 in most cases) and currentNumber
+
+ex) example with anonymous function
+
+	—> numbers = [3, 56, 2, 48, 5]
+
+	var newNumber = numbers.reduce( function (accumulator, currentNumber) {
+		return accumulator + currentNumber;
+	});
+
+	newNumber = 114
+	
+Find
+*.find() -> finds first item that matches from an array; expects a function
+
+ex) example with anonymous function
+	
+	—> numbers = [3, 56, 2, 48, 5]
+
+	var newNumber = numbers.find( function(num) {
+		return num > 10;
+	});
+
+	newNumber = 56
+
+Find Index
+*.findIndex() -> finds index of item that matches from an array; expects a function
+
+ex) example with anonymous function
+
+	—> numbers = [3, 56, 2, 48, 5]
+
+	var numIndex = numbers.findIndex( function(num) {
+		return num > 10;
+	});
+
+	numIndex = 1
+	
+
+Arrow Function (The Fat Arrow)
+* great for massive space saving; horrible for jr. devs or others who are new to JS
+
+1) allows us to remove keyword “function” from anonymous functions
+
+	ex) numbers.map( function(x, y) {
+			return x*y;
+		});
+
+		instead
+
+		numbers.map( (x,y) => {
+			return x*y;
+		}):
+
+2) for single variable expressions, can remove parentheses 
+
+	ex) numbers.map( x => {
+			return x * x;
+		}):
+
+3) for single-line return statements, can remove both “return” keyword and curly brackets
+
+	ex) numbers.map( x => x * x );
+
+
+Conditional Rendering
+
+*ternary operator -> to use instead of statement; bc expressions only as variables!!
+
+	—> CONDITION ? DO IF TRUE: DO IF FALSE 
+
+	turns statement into 3 expressions
+
+ex) return <div> {
+		isLoggedIn ? <h1>Welcome</h1> : <Login />
+	}</div>
