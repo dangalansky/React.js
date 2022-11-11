@@ -370,6 +370,159 @@ Conditional Rendering
 
 	turns statement into 3 expressions
 
-ex) return <div> {
-		isLoggedIn ? <h1>Welcome</h1> : <Login />
-	}</div>
+	ex) return <div> {
+			isLoggedIn ? <h1>Welcome</h1> : <Login />
+		}</div>
+
+	ex) using ternary operator w/ null (do nothing)
+
+			isLoggedIn ? <h1>Welcome</h1> : null
+	
+
+but… we can shorten with use of && bc JS only proceeds if first condition is true
+
+	ex) return <div> {
+			isLoggedIn && <h1>Welcome</h1>
+		}</div>
+
+—> using props to affect a condition outside of a component
+
+	ex) function Form(props) {
+			return(
+			<form>
+				{!props.isRegistered && <input type=“password” placeholder=“Confirm Password” />}
+
+				<button type=“submit”>{props.isRegistered ? “Login” : “Register”}</button>
+			</form>
+			);
+		}
+
+		—> inside App.jsx
+		
+		isRegistered = true
+
+		<Form isRegistered={isRegistered} />
+
+	
+State
+
+UI = f(State)
+	
+	—> the look of a user interface is dependent upon the state of the elements contained within  
+
+
+* declarative programing —> UI changes based on a state
+ 
+		ex) var isDone = true;
+			
+			const strikeThrough = {textDecoration: “line-through”};
+
+			<p style={isDone && strikeThrough}>Buy Milk</p>;
+
+
+* imperative programing —> direct action based on code that taps into properties for specific change
+
+		ex) document.getElemenetById(“root”).style.textDecoration = “line-through”;
+
+Hooks
+* allows for dynamic rendering based on changing states
+
+*React.useState()
+	- add to import statement: import React, {useState} form “react”;
+	- must be used inside functional component
+	- returns an array [undefined, function()]
+
+	ex) const state = useState(123);
+
+		—> state[0] = 123
+		—> state[1] = function()
+
+* destructuring - process of destructuring complex structures (i.e. objects and arrays)	
+
+	ex) const rgb = [255, 162, 42] —> const [red, green, blue] = [255, 162, 42] —> red = 255
+
+thus… destructure .useState() to make more sense and create a function
+
+	ex) const [count, setCount] = useState(123);
+
+		function increase() {
+			setCount(count + 1);
+		}
+
+		<button onClick={increase}>+</button>
+
+Destructuring
+
+- for arrays:
+
+	ex) const animals = [
+  			{ name: "cat", sound: "meow" },
+  			{ name: "dog", sound: "woof" }
+		];
+
+		const [cat, dog] = animals; 
+
+- for objects
+
+	ex) const {name, sound} = cat; 
+
+			or rename values
+
+	ex) const {name: catName, sound: catSound} = cat;
+
+- to provide default object value
+
+	ex) const {name = “Fluffy”, sound = “Purr”} = cat;
+		
+		* in the case that no value exists, these will fill that need
+
+- for nested objects 
+
+	ex) const animals = [
+  			{ name: "cat", 
+			  sound: "meow" 
+			  feedingRequirements: {
+		       	food: 2,
+			    water: 3
+			   }
+            },
+  			{ name: "dog", sound: "woof" },
+			
+		];
+
+		const {name, sound, feedingRequirements: {food, water} } = cat;
+
+
+
+	ex) Array of objects + nested shtuff
+	
+	const cars = [
+  		{
+    		model: "Honda Civic",
+    		coloursByPopularity: ["black", "silver"],
+    		speedStats: {
+      			topSpeed: 140,
+      			zeroToSixty: 8.5
+    		}
+  		},
+  		{
+    		model: "Tesla Model 3",
+    		coloursByPopularity: ["red", "white"],
+    		speedStats: {
+      			topSpeed: 150,
+      			zeroToSixty: 3.2
+    		}
+  		}
+		];
+
+—> for arrays
+
+	ex) const [honda, tesla] = cars;
+
+	ex) const { colorsByPopularity: [hondaTopColor] } = honda;
+
+					  ^ in this case, single value assumes index [0]
+
+—> for objects
+
+	ex) const { speedStats: {topSpeed: hondaTopSpeed} } = honda;
