@@ -521,8 +521,40 @@ Destructuring
 
 	ex) const { colorsByPopularity: [hondaTopColor] } = honda;
 
-					^ in this case, single value assumes index [0]
+										^ in this case, single value assumes index [0]
 
 —> for objects
 
 	ex) const { speedStats: {topSpeed: hondaTopSpeed} } = honda;
+
+
+Event Handling
+
+- event handlers are camelcase in JSX
+
+	ex) onClick={function}
+		
+		onMouseOver={function}
+
+- use event handling in conjunction with .useState() hook and conditional rendering
+
+	ex) turn a button black/white when mouse hovers
+
+	const [isMouseOver, setMouseOver] = useState(false);
+
+	function handleMouseOver() {
+		setMouseOver(true);
+	}
+
+	function handleMouseOut() {
+		setMouseOver(false);
+
+	}
+
+	<button 
+		style={{ backgroundColor: isMouseOver ? “black” : “white” }}
+		onMouseOver={handleMouseOver}
+		onMouseOut={handleMouseOut}
+	>
+		Submit
+	</button>
