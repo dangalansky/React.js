@@ -521,7 +521,7 @@ Destructuring
 
 	ex) const { colorsByPopularity: [hondaTopColor] } = honda;
 
-					  ^ in this case, single value assumes index [0]
+					^ in this case, single value assumes index [0]
 
 —> for objects
 
