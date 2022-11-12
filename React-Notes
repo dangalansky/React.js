@@ -451,6 +451,14 @@ thus… destructure .useState() to make more sense and create a function
 
 		<button onClick={increase}>+</button>
 
+
+Hooks for Complex State Change
+
+- useState() can also hold an object, instead of simple value
+
+
+
+
 Destructuring
 
 - for arrays:
@@ -558,3 +566,68 @@ Event Handling
 	>
 		Submit
 	</button>
+
+Forms + Event Handling
+
+- useState() w/ input: what you type in input becomes heading
+
+	ex) const [name, setName] = useState(“”);
+
+		function setHeading(event) {
+			setName(event.target.value);
+		}
+
+		<h1>Hello {name}</h1>
+
+		<input 
+			onChange={setHeading}
+			type=“text”
+			value={name} <<<- “controlled components”: to keep single source of truth, helpful to make sure this value is set to the same variable!
+		/>
+
+- how to: Update Input only when you press Submit Button
+
+1) create an event handler for the submit button
+
+	<button onClick={handleClick} />
+
+2) create a useState() constant for the heading text
+
+	const [headingText, setHeading] = useState(“”);
+
+3) create a function that grabs the previous value 
+
+	const [name, setName] = useState();
+
+	function handleClick() {
+		setHeading(name);
+	}
+
+4) update variables in JSX to include this change
+
+	<h1>Hello {headingText} </h1>
+	
+
+- Forms inside React
+
+	* a form’s default behavior is to refresh the page upon submitting
+	* we can create the same behavior as above, with this code
+
+1) remove event handler from button and update to type=“submit
+
+2) place all the above elements inside a form, add event handler to form
+
+	ex) <form onSubmit={handleClick}>
+
+3) update handleClick() with an event and the attribute “preventDefault”
+
+	function handleClick(event) {
+		setHeading(name);
+
+		event.preventDefault();
+	}
+
+
+Class Components / Functional Components
+
+	
