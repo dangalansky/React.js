@@ -349,13 +349,13 @@ Arrow Function (The Fat Arrow)
 
 		numbers.map( (x,y) => {
 			return x*y;
-		}):
+		});
 
 2) for single variable expressions, can remove parentheses 
 
 	ex) numbers.map( x => {
 			return x * x;
-		}):
+		});
 
 3) for single-line return statements, can remove both “return” keyword and curly brackets
 
@@ -428,6 +428,7 @@ Hooks
 * allows for dynamic rendering based on changing states
 
 *React.useState()
+
 	- add to import statement: import React, {useState} form “react”;
 	- must be used inside functional component
 	- returns an array [undefined, function()]
@@ -454,7 +455,54 @@ thus… destructure .useState() to make more sense and create a function
 
 Hooks for Complex State Change
 
+*prevValue —> inbuilt react method that returns previous value of an object!
+
 - useState() can also hold an object, instead of simple value
+
+	ex) const [fullName, setFullName] = useState({
+			fName: “”,
+			lName: “”
+		})
+
+	—> tap into object like any other
+
+		<h1> Hello {fullName.fName} {fullName.lName} </h1>
+
+	—> very important to use both name and value attributes to HTML elements
+
+		<input name=“fName” value={fullName.fName) />
+
+	—> use 1 method for both names, we must also create ability to tell which input is being changed
+
+		function handleChange(event) {
+			
+			const newValue = event.target.value;
+			const inputName = event.target.name;
+
+			setFullName(prevValue => {
+       			if (inputName === “fName”) {
+					return {
+						fName: newValue,
+						lName: prevValue.lName
+					}
+				} else if (inputName === “lName”) {
+						fName: prevValue.fName,
+						lName: newValue
+					}
+				});	
+				}
+
+	-> lastly, we can simplify our Hook State Change constants through destructuring
+
+		const [value, name] = event.target;
+
+	—> thus, we would change the need to tap into these objects 
+
+		if (name === “fName”) {
+			return {
+				fName: value,
+				lName: prevValue.lName 
+			};
 
 
 
@@ -626,8 +674,5 @@ Forms + Event Handling
 
 		event.preventDefault();
 	}
-
-
-Class Components / Functional Components
 
 	
