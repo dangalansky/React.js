@@ -462,7 +462,7 @@ Hooks for Complex State Change
 	ex) const [fullName, setFullName] = useState({
 			fName: “”,
 			lName: “”
-		})
+		});
 
 	—> tap into object like any other
 
@@ -478,7 +478,7 @@ Hooks for Complex State Change
 			
 			const newValue = event.target.value;
 			const inputName = event.target.name;
-
+	
 			setFullName(prevValue => {
        			if (inputName === “fName”) {
 					return {
@@ -494,7 +494,7 @@ Hooks for Complex State Change
 
 	-> lastly, we can simplify our Hook State Change constants through destructuring
 
-		const [value, name] = event.target;
+		const {value, name} = event.target;
 
 	—> thus, we would change the need to tap into these objects 
 
@@ -503,6 +503,47 @@ Hooks for Complex State Change
 				fName: value,
 				lName: prevValue.lName 
 			};
+
+Spread Operator (…)
+
+* unpacks arrays and objects down to their constituent parts to be added elsewhere
+
+ex) arrays
+
+	const fruits = [“apple”, “banana”, “orange”]
+	
+	const vegetables = [“broccoli”, “potato”, “carrot”, …fruits]
+
+	console.log(vegetables) —> [“broccoli”, “potato”, “carrot”, “apple”, “banana”, “orange”]
+
+ex) objects
+
+	const fullName = {
+		fName: “james”,
+		lName: “bond”
+	};
+
+	const user = {
+		…fullName,
+		id: 1,
+		username: “jamesbond007”
+	};
+
+	console.log(user) —> Object { fName: “james”, lName: “bond”, id: 1, username: “jamesbond007}
+
+—> we can simplify our above state change event handler function to the following
+
+	function handleChange(event) {
+		
+		const {name, value} = event.target;
+
+		setFullName (prevValue => {
+			return {
+				…prevValue,
+				[name]: Value
+			};
+		});
+	}
 
 
 
