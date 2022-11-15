@@ -122,6 +122,39 @@ Inline Styles
 			customStyle.color = “red”;
 		}
 
+
+Exporting Modules
+
+1) keyword default means that will be imported regardless of what you call the file
+
+	ex) export default Heading;
+
+		—> import Bullshoot from “./components/Heading”
+		—> all the same, call it whatever you want
+
+2) if you want to export multiple items from module
+
+		—> place items inside {} after default
+		
+		ex) export default pi;
+			export { doublePi, triplePi };
+
+3) if you are importing multiple items from module
+
+		—> place item(s) inside {} for import statement
+
+		ex) import pi, { doublePi, triplePi } from “./components/Math”
+
+		—> must use () to activate the item later
+
+		ex) <h1>{doublePi()}</h1>
+
+		-> OR: wildcard import
+
+		ex) import * as pi from “./components/Math”
+
+			{pi.default} or {pi.doublePi()} etc…
+
 Components
 
 * allows for less scrolling, less code, easier to understand :)
@@ -173,37 +206,46 @@ Components
 
 	this would be all thats there!
 
-Exporting Modules
 
-1) keyword default means that will be imported regardless of what you call the file
+Managing a Component Tree
 
-	ex) export default Heading;
 
-		—> import Bullshoot from “./components/Heading”
-		—> all the same, call it whatever you want
+Applying Dynamic Styles To a Modular Component
 
-2) if you want to export multiple items from module
+	1) within Component.jsx file, apply styling
 
-		—> place items inside {} after default
-		
-		ex) export default pi;
-			export { doublePi, triplePi };
+		<li style={{ textDecoration: “line-through”}}>Text</li>
 
-3) if you are importing multiple items from module
+	2) create boolean condition, import useState
 
-		—> place item(s) inside {} for import statement
+		const [isDone, setIsDone] = useState(false);
 
-		ex) import pi, { doublePi, triplePi } from “./components/Math”
+	3) create an event handler function
 
-		—> must use () to activate the item later
+		* trick to simply return opposite of true/false!
 
-		ex) <h1>{doublePi()}</h1>
 
-		-> OR: wildcard import
+		function handleClick() {
+			setIsDone (prevValue => {
+				return !prevValue;
+			});
+		}	
 
-		ex) import * as pi from “./components/Math”
 
-			{pi.default} or {pi.doublePi()} etc…
+	4) apply to HTML element
+
+		<li onClick={handleClick}> Text </li>
+
+	5) apply ternary operator to inline-style
+
+		<li style={{ textDecoration: isDone ? “line-through” : null }}>
+
+
+
+
+
+
+
 
 Props
 
@@ -540,11 +582,10 @@ ex) objects
 		setFullName (prevValue => {
 			return {
 				…prevValue,
-				[name]: Value
-			};
-		});
+				[name]: Value  ** <- we must put variables into brackets when used as “keys” during object construction!
+			};							else: will be translated as “string”						
+		});	
 	}
-
 
 
 
@@ -715,5 +756,3 @@ Forms + Event Handling
 
 		event.preventDefault();
 	}
-
-	
