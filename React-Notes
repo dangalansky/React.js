@@ -210,7 +210,7 @@ Components
 Managing a Component Tree
 
 
-Applying Dynamic Styles To a Modular Component
+ Applying Dynamic Styles To a Modular Component
 
 	1) within Component.jsx file, apply styling
 
@@ -238,14 +238,59 @@ Applying Dynamic Styles To a Modular Component
 
 	5) apply ternary operator to inline-style
 
-		<li style={{ textDecoration: isDone ? “line-through” : null }}>
+		<li style={{ textDecoration: isDone ? “line-through” : “none” }}>
 
 
 
+	Reaching into a Parent Element from Component to Delete Array Item
+
+		1) .map() creates an index property for each processed item, use this to provide ID to each list item 
+
+			{items.map((todoItem, index) => (
+				<ToDoItem key={index} id={index} text={todoItem} onChecked={deleteItem} />
+			))}
+
+		2) pass function into component on parent side
+
+			<ToDoItem key={index} id={index} text={todoItem} onChecked={deleteItem} />
+
+		3) create function, pass in .useState() function and id that originally set the array
+
+			function deleteItem(id) {
+
+				setItems(prevItems => {
+
+					return prevItems.filter(item, index) => {
+
+						return index !==id;
+
+					});
+
+				});
+
+			}
+
+				* .filter() returns array + expects a function & gives access to 2 properties
+
+					1) element that is being looped through (“item” in this case)
+
+					2) index of the current element
 
 
+		4) update component to trigger function when clicked and pass in id
+			* must designate that function is only called when clicked so…
 
+			function ToDoItem(props) {
+				return( 
+					<li 
+						onClick= {() => {
+							props.onChecked(props.id);
+						}}	
+	 				/>
+				);		
+			}
 
+		
 
 Props
 
@@ -545,6 +590,8 @@ Hooks for Complex State Change
 				fName: value,
 				lName: prevValue.lName 
 			};
+
+
 
 Spread Operator (…)
 
