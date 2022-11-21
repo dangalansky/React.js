@@ -257,18 +257,16 @@ Managing a Component Tree
 		3) create function, pass in .useState() function and id that originally set the array
 
 			function deleteItem(id) {
-
 				setItems(prevItems => {
-
-					return prevItems.filter(item, index) => {
-
-						return index !==id;
-
-					});
-
+					return prevItems.filter(
+						(item, index)=> {
+							return index !== id;
+					}
+				);
+				
 				});
-
 			}
+
 
 				* .filter() returns array + expects a function & gives access to 2 properties
 
