@@ -241,6 +241,45 @@ Managing a Component Tree
 		<li style={{ textDecoration: isDone ? “line-through” : “none” }}>
 
 
+	Passing values from Component —> Parent Element
+
+		ex) const [data, setData] = useState({
+				dataOne: “”,
+				dataTwo: “”
+			});
+
+
+		1) inside component: create function to submit data
+
+			<button onClick={submitData}>Add</button>
+
+		
+
+		2) if inside form, remember to preventDefault();
+
+			function submitData(event) {
+			
+				event.preventDefault();
+			}
+
+		
+		3) inside parent: pass in a function as prop to trigger function to pass data to parent 
+
+			function addData(data) {
+				console.log(data);			
+			}
+
+			<InputComponent onAdd={addData) />
+
+
+		4) inside component: pass data into submitData function
+
+			function submitData(event) {
+				props.onAdd(data);
+				event.preventDefault();
+			 }
+
+
 
 	Reaching into a Parent Element from Component to Delete Array Item
 
@@ -564,7 +603,7 @@ Hooks for Complex State Change
 			const newValue = event.target.value;
 			const inputName = event.target.name;
 	
-			setFullName(prevValue => {
+			setFullName(prevValue => {	 	
        			if (inputName === “fName”) {
 					return {
 						fName: newValue,
