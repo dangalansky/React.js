@@ -671,6 +671,17 @@ ex) objects
 		});	
 	}
 
+	
+	Adding object to Array
+
+	const [array, setArray] = useState([]);
+
+	function addData(data) {
+		setArray(prevData => {
+			return [data, …prevData];
+		});
+	}
+
 
 
 Destructuring
