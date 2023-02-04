@@ -3,6 +3,16 @@ React.js
 
 https://github.com/airbnb/javascript/tree/master/react
 
+New App:
+
+cd into working directory
+
+npx create-react-app my-app
+cd my-app
+npm start
+
+
+
 Launch React:
 
 1) Hyper Terminal
@@ -241,6 +251,45 @@ Managing a Component Tree
 		<li style={{ textDecoration: isDone ? “line-through” : “none” }}>
 
 
+
+	Passing values from Child —> Parent
+
+	ex) function Parent() {
+
+			const [value, setValue] = useState(“Update Me!);
+
+			return <>
+
+		   		 <div>{value}</div>
+
+				<Child />
+
+				</>
+
+	1) Pass setValue as prop into child component
+
+		ex) first, inside parent:
+
+				<Child setValue={setValue} />
+
+		ex) next, inside Child():
+
+				function Child({setValue}){ …
+
+
+	2) Create function inside Child to update setValue
+
+		ex) function updateParent(){
+				setValue(“Updated, Mama!”);
+			}
+
+
+	3) attach function to onClick button inside child
+
+		<button onClick={updateParent}>Update!</button>
+
+				
+
 	Passing values from Component —> Parent Element
 
 		ex) const [data, setData] = useState({
@@ -269,7 +318,7 @@ Managing a Component Tree
 				console.log(data);			
 			}
 
-			<InputComponent onAdd={addData) />
+			<InputComponent onAdd={addData} />
 
 
 		4) inside component: pass data into submitData function
@@ -838,7 +887,7 @@ Forms + Event Handling
 	* a form’s default behavior is to refresh the page upon submitting
 	* we can create the same behavior as above, with this code
 
-1) remove event handler from button and update to type=“submit
+1) remove event handler from button and update to type=“submit”
 
 2) place all the above elements inside a form, add event handler to form
 
